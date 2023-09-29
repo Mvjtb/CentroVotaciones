@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <string>
 #include "Papeleta.h"
-#include "VGeneral.h"
+#include "General/VGeneral.h"
 using namespace std;
 
 /*

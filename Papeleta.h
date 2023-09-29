@@ -11,7 +11,7 @@
 #include <string>
 #include "MEstudiante.h"
 #include "Cargo.h"
-#include "Pila.cpp"
+#include "General/Pila.cpp"
 using namespace std;
 
 /*

@@ -9,7 +9,7 @@
 #define MESA_H_
 #include <iostream>
 #include <string>
-#include "Cola.cpp"
+#include "General/Cola.cpp"
 #include "MEstudiante.h"
 #include "Papeleta.h"
 using namespace std;
