@@ -50,5 +50,8 @@ string MEstudiante::getDecanato(){
 string MEstudiante::getPrograma(){
 	return programa;
 }
+int MEstudiante::getSemestre(){
+	return semestre;
+}
 
 
