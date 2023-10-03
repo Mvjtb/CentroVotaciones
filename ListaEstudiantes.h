@@ -1,6 +1,6 @@
 #ifndef LISTAESTUDIANTES_H_
 #define LISTAESTUDIANTES_H_
-#include "General/Lista.cpp"
+#include "General/Lista.cpp" //se implementa la libreria lista
 #include "MEstudiante.h"
 #include <iostream>
 #include <string>
@@ -23,7 +23,6 @@ public:
 	void mostrarLista();
 	bool esVacia();
 	bool llena();
-
 
 };
 

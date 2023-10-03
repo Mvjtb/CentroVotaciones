@@ -88,7 +88,7 @@ bool ListaEstudiantes::BuscarEstudiante(string ced) {
  }
  }
  return band;
- } */
+ } */ //Metodo usando apuntador referencia
 
 void ListaEstudiantes::mostrarLista(){
  Lista<MEstudiante> aux_est;
