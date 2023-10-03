@@ -54,18 +54,11 @@ int main() {
 
 		cout << " GRACIAS POR PARTICIPAR" << endl;
 
-		while (!pap.vacia()) {
-			pap.retirarVoto(car);
+		//	se imprime la papeleta con los cargos seleccionados por el votante
+		if(!pap.vacia()) {
 			pap.imprimirResultados();
 		}
-		/*		auxpila.agregarVoto(car);
-		 }
-		 while(!auxpila.vacia())
-		 {
-		 auxpila.retirarVoto(car);
-		 pap.agregarVoto(car);
-		 }
-		 */
+
 
 		/*
 		 *  MENU PARA GESTION LISTA ESTUDIANTES VERSION DE PRUEBA.

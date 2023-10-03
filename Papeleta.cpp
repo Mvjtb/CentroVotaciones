@@ -63,19 +63,14 @@ Cargo Papeleta::obtenerInfo(Nodopila<Cargo>* apunt)
 }
 void Papeleta::imprimirResultados()
 {
-	string car,post;
 	Pila<Cargo> aux;
 	Cargo info;
+	cout<< " ==== SU ELECCION ==== "<<endl;
 	while(!cargos.Vacia())
 	{
 		cargos.Remover(info);
-		cout<< "Su eleccion"<<endl;
-		car=info.getCargo();
-		post=info.getPostulado();
-		cout<<"Cargo: "<<car<<endl;
-		cout<<"Candidato: "<<post<<" "<<endl;
-		obtenerInfo(apunt);
-		cout<<"contenido: "<<apunt<<endl;
+		cout<<"Cargo: "<<info.getCargo()<<endl;
+		cout<<"================="<<endl;
 		aux.Insertar(info);
 	};
 	while(!aux.Vacia())
