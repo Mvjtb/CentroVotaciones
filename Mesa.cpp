@@ -10,27 +10,20 @@
 Mesa::Mesa() {
 	numMesa=0;
 	cantVotos=0;
+	contP=0;
+	contS=0;
+	contV1=0;
+	contV2=0;
 }
 
-void Mesa::setNombreEncargado(string ne)
+void Mesa::setCategoria(string c)
 {
-	nombreEncargado=ne;
+	categoria=c;
 }
 
-string Mesa::getNombreEncargado()
+string Mesa::getCategoria()
 {
-	return nombreEncargado;
-}
-
-
-void Mesa::setEstudiante(MEstudiante e)
-{
-	estudiante=e;
-}
-
-MEstudiante Mesa::getEstudiante()
-{
-	return estudiante;
+	return categoria;
 }
 
 void Mesa::setNumMesa(int nm)
@@ -53,22 +46,22 @@ int Mesa::getCantVotos()
 	return cantVotos;
 }
 
-void Mesa::AgregarVoto(Papeleta pap)
+void Mesa::AgregarVoto(MEstudiante e)
 {
-  papeletas.Insertar(pap);
+  estudiantes.Insertar(e);
 }
 
-bool Mesa::RetirarVoto(Papeleta& pap)
+bool Mesa::RetirarVoto(MEstudiante& e)
 {
-	return papeletas.Remover(pap);
+	return estudiantes.Remover(e);
 }
 
 bool Mesa::Vacia()
 {
-	return papeletas.Vacia();
+	return estudiantes.Vacia();
 }
 
-nodo<Papeleta>* Mesa::obtPrimerVotante()
+nodo<MEstudiante>* Mesa::obtPrimerVotante()
 {
-	return papeletas.obtPrimero();
+	return estudiantes.obtPrimero();
 }

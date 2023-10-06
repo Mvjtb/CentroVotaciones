@@ -15,7 +15,7 @@
 using namespace std;
 
 /*
- *  ESTE SOLO ES UNA PRUEBA DEL FUNCIONAMIENTO DE LA PILA, NO ES LA VERSION FINAL DEL MAIN
+ *  ESTE SOLO ES UNA PRUEBA DEL FUNCIONAMIENTO DE LA PILA Y LA LISTA, NO ES LA VERSION FINAL DEL MAIN
  */
 
 int main() {
@@ -117,8 +117,8 @@ int main() {
 			break;
 		}
 
-		opc = vg.LeerValidarNro(
-				"\nSeleccione una opcion 1-4 o 5 para salir del menu:", 1, 5);
+		//opc2 = vg.LeerValidarNro(
+	//			"\nSeleccione una opcion 1-4 o 5 para salir del menu:", 1, 5);
 	}
 	while (opc != 5);
 
