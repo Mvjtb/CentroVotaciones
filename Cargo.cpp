@@ -10,7 +10,7 @@
 Cargo::Cargo() //inicializamos variables en el constructor
 {
 	cargo= "";
-	postulado= "";
+	estado= "";
 }
 
 //METODOS SET Y GET
@@ -26,12 +26,12 @@ string Cargo::getCargo()
 }
 
 
-void Cargo::setPostulado(string p)
+void Cargo::setEstado(string ec)
 {
-	postulado=p;
+	estado=ec;
 }
 
-string Cargo::getPostulado()
+string Cargo::getEstado()
 {
-	return postulado;
+	return estado;
 }

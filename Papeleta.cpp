@@ -11,16 +11,6 @@ Papeleta::Papeleta() {
 
 }
 
-void Papeleta::setEstudiante(MEstudiante e)
-{
-	estudiante=e;
-}
-
-MEstudiante Papeleta::getEstudiante()
-{
-	return estudiante;
-}
-
 bool Papeleta::agregarVoto(Cargo car)
 {
 	cargos.Insertar(car);
@@ -66,10 +56,11 @@ void Papeleta::imprimirResultados()
 	Pila<Cargo> aux;
 	Cargo info;
 	cout<< " ==== SU ELECCION ==== "<<endl;
+	cout<< " ===================== " <<endl;
 	while(!cargos.Vacia())
 	{
 		cargos.Remover(info);
-		cout<<"Cargo: "<<info.getCargo()<<endl;
+		cout<<"Cargo: "<<info.getCargo()<<endl<<"Estatus: "<<info.getEstado()<<endl;
 		cout<<"================="<<endl;
 		aux.Insertar(info);
 	};
@@ -80,3 +71,4 @@ void Papeleta::imprimirResultados()
 	}
 
 }
+

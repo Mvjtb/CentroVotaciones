@@ -19,13 +19,13 @@ using namespace std;
 
 class Cargo {
 private:								//atributos de la clase
-	string cargo, postulado;
+	string cargo, estado;
 public:									//metodos de la clase
 	Cargo();
 	void setCargo(string c);
-	void setPostulado(string p);
+	void setEstado(string ec);
 	string getCargo();
-	string getPostulado();
+	string getEstado();
 
 };
 

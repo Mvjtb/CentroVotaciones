@@ -9,7 +9,6 @@
 #define PAPELETA_H_
 #include <iostream>
 #include <string>
-#include "MEstudiante.h"
 #include "Cargo.h"
 #include "General/Pila.cpp"
 using namespace std;
@@ -19,13 +18,10 @@ using namespace std;
  */
 class Papeleta {
 private:							//atributos de la clase
-	MEstudiante estudiante;			//cada papeleta contiene la seleccion de un estudiante (una papeleta pertenece o esta asociada a un estudiante votante)
 	Pila<Cargo> cargos;				//la papeleta contiene una pila de objetos cargo
 	Nodopila<Cargo>* apunt;
 public:
 	Papeleta();						//metodos de la clase
-	void setEstudiante(MEstudiante e);
-	MEstudiante getEstudiante();
 	bool agregarVoto(Cargo car);		//metodo para agregar/insertar un voto de cargo usuando metodo de pila
 	bool retirarVoto(Cargo &car);		//metodo para retirar de la pila un voto de cargo empleando metodo de pila
 	bool vacia();						//metodo para saber si la pila "esta vacia" (no tiene elementos)

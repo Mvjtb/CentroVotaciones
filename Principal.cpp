@@ -27,7 +27,7 @@ int main() {
 	Cargo car;
 	//datos del cargo
 	string c, p;
-	int r;
+	int r,vo;
 	//datos para lista estudiantes
 	string ced, nomb, ape, progra, deca;
 	int stre, resp, opc;
@@ -41,22 +41,94 @@ int main() {
 					1, 2);
 
 	if (resp == 1) {
-		vg.ImprimirMensaje("==== SELECCIONE A SUS CANDIDATOS ==== ");
-		do {
-			c = vg.LeerString("\n Cargo a votar: ");
-			p = vg.LeerString("\n Nombre del postulado: ");
-			car.setCargo(c);
-			car.setPostulado(p);
-			pap.agregarVoto(car);
-			r = vg.LeerValidarNro("\n Desea votar por otro cargo? 1.Si, 2.No",
-					1, 2);
-		} while (r == 1);
 
-		cout << " GRACIAS POR PARTICIPAR" << endl;
+		vg.ImprimirMensaje("\n");
+		vg.ImprimirEncabezado("============================","====== MENU DE VOTACIONES ========");
+		vg.ImprimirMensaje("1.Seleccionar Candidatos");
+		vg.ImprimirMensaje("2. Volver al Menu");
 
-		//	se imprime la papeleta con los cargos seleccionados por el votante
-		if(!pap.vacia()) {
-			pap.imprimirResultados();
+		opc=vg.LeerValidarNro("\n Elija su opcion: ",1,2);
+
+		if(opc==1)
+		{
+				vg.ImprimirMensaje("==== SELECCIONE A SUS CANDIDATOS ======");
+				vg.ImprimirMensaje("\n TIENE A SU DISPOSICION 3 CARGOS POR LOS CUALES PUEDE VOTAR: VOCERO, SECRETARIO Y PRESIDENTE");
+				vg.ImprimirMensaje("\n Elija Sabiamente");
+
+				vo=vg.LeerValidarNro("Desea votar por el cargo de vocero? \n Presione 1 para SI, 2 para no: ",1,2);
+				if(vo==1)
+				{
+					vg.ImprimirMensaje("============== Candidatos para Vocero ============= ");
+					vg.ImprimirMensaje("Maria Lopez");
+					vg.ImprimirMensaje("Jose Perez");
+
+					c="vocero";
+					p="voto por el cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+				else
+				{
+					c="vocero";
+					p="no voto por este cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+
+				//Votar por el secretario
+				vo=vg.LeerValidarNro("\n Desea votar por el cargo de Secretario? \n Presione 1 para SI, 2 para no: ",1,2);
+				if(vo==1)
+				{
+					vg.ImprimirMensaje("========== Candidatos para Secretario ============ \n ");
+					vg.ImprimirMensaje("Juan Orozco");
+					vg.ImprimirMensaje("Pedro Alvarez");
+
+					c="secretario";
+					p="voto por el cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+				else
+				{
+					c="secretario";
+					p="no voto por este cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+
+				//Votar por el presidente
+				vo=vg.LeerValidarNro("Desea votar por el cargo de presidente? Presione 1 para SI, 2 para no: ",1,2);
+				if(vo==1)
+				{
+					vg.ImprimirMensaje("====== Candidatos para Presidente ======== \n ");
+					vg.ImprimirMensaje("Magdalena Mendoza");
+					vg.ImprimirMensaje("Jesus Juarez");
+
+					c="presidente";
+					p="voto por el cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+				else
+				{
+					c="presidente";
+					p="no voto por este cargo";
+					car.setCargo(c);
+					car.setEstado(p);
+					pap.agregarVoto(car);
+				}
+
+				vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
+
+				//	se imprime la papeleta con los cargos seleccionados por el votante
+				if(!pap.vacia()) {
+					pap.imprimirResultados();
+				}
 		}
 
 

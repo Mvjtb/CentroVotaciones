@@ -9,14 +9,14 @@
 #define MESTUDIANTE_H_
 #include <string>
 #include <iostream>
-#include "Papeleta.h"
+//#include "Papeleta.h"
 
 using namespace std;
 
 class MEstudiante {
 
 private:
-	Papeleta pap;
+	//Papeleta pap;
 	string cedula, nombre, apellido, programa, decanato;
 	int semestre;
 
@@ -34,8 +34,8 @@ public:
 	string getPrograma();
 	string getDecanato();
 	int getSemestre();
-	void setPapeleta(Papeleta p);
-	Papeleta getPapeleta();
+	//void setPapeleta(Papeleta p);
+	//Papeleta getPapeleta();
 
 };
 

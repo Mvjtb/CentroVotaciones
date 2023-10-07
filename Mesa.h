@@ -10,8 +10,9 @@
 #include <iostream>
 #include <string>
 #include "General/Cola.cpp"
+
 #include "MEstudiante.h"
-#include "ListaEstudiantes.h"
+//#include "ListaEstudiantes.h"
 using namespace std;
 
 /*
@@ -22,7 +23,7 @@ private:													//atributos de la clase
 	string categoria;										//criterio categoria de la mesa
 	int numMesa,cantVotos,contP,contS,contV1,contV2;		//contadores para poder totalizar luego la cantidad de votos por mesa y por cargos
 	Cola<MEstudiante> estudiantes;							//cola de estudiantes
-	ListaEstudiantes le;
+	//ListaEstudiantes le;
 
 public:														//metodos de la clase
 	Mesa();
@@ -44,6 +45,7 @@ public:														//metodos de la clase
 	bool RetirarVotante(MEstudiante& e);			//emplea el metodo remover para extraer de la cola un nodo de tipo estudiante
 	bool Vacia();									//emplea metodo vacia de cola
 	nodo<MEstudiante>* obtPrimerVotante();			//emplea el metodo obtener primero de la cola
+	void ImprimirCola();
 };
 
 #endif /* MESA_H_ */

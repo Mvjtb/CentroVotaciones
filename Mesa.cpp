@@ -46,12 +46,13 @@ int Mesa::getCantVotos()
 	return cantVotos;
 }
 
-void Mesa::AgregarVoto(MEstudiante e)
+
+void Mesa::AgregarVotante(MEstudiante e)
 {
   estudiantes.Insertar(e);
 }
 
-bool Mesa::RetirarVoto(MEstudiante& e)
+bool Mesa::RetirarVotante(MEstudiante& e)
 {
 	return estudiantes.Remover(e);
 }
@@ -65,3 +66,22 @@ nodo<MEstudiante>* Mesa::obtPrimerVotante()
 {
 	return estudiantes.obtPrimero();
 }
+
+
+void Mesa::ImprimirCola()
+{
+	MEstudiante valor,marca;
+	Cola<MEstudiante> colaux;
+	while(!estudiantes.Vacia())
+	{
+			estudiantes.Remover(valor);
+			cout<<"estudiante: "<<valor.getNombre()<<endl;
+			colaux.Insertar(valor);
+	}
+	while(!colaux.Vacia())
+	{
+		colaux.Remover(valor);
+		estudiantes.Insertar(valor);
+	}
+}
+
