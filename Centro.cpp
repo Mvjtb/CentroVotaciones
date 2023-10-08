@@ -6,11 +6,77 @@
  */
 
 #include "Centro.h"
+#include "General/Lista.cpp"
 
 
 Centro::Centro(){
 	check=false;//esta variable sera de utilidad cuando se carguen los datos de la BD
 	acumVPM=0;
+}
+
+void Centro::asigPrimero(nodo<Mesa>* ptr)
+{
+	mesas.AsigPrimero(ptr);
+}
+
+nodo<Mesa>* Centro::ObtProx(nodo<Mesa>* p)
+{
+	mesas.ObtProx(p);
+}
+bool Centro::insertarC(Mesa mesa)
+{
+	 mesas.InsComienzo(mesa);
+}
+
+
+bool Centro::insertarD(nodo<Mesa>* pt,Mesa &mesa)
+{
+	mesas.InsDespues(pt,mesa);
+}
+
+
+bool Centro::removerC(Mesa &mesa)
+{
+	mesas.EliComienzo(mesa);
+}
+
+
+bool Centro::removerD(nodo<Mesa>* pt, Mesa &mesa)
+{
+	mesas.EliDespues(pt, mesa);
+}
+
+
+void Centro::cargarMesas()
+{
+	vg.ImprimirMensaje("==========================================================");
+	vg.ImprimirMensaje(" =========== CARGANDO INFORMACION DE LAS MESAS ========== ");
+	vg.ImprimirMensaje("==========================================================");
+	Mesa m;
+
+	//datos de la mesa
+	string catm;
+	int numM;
+	nodo<Mesa>* pointer;
+
+	for (int i=0; i<6 ; i++)
+	{
+		 catm= vg.LeerString("\n CATEGORIA DE LA MESA: ");		//NOTA: LA CATEGORIA HACE REFERENCIA A ALGUN PROGRAMA ACADEMICO (CARRERA)
+		 numM= i;
+		 m.setCategoria(catm);
+		 m.setNumMesa(numM);
+		 if(!mesas.Vacia())
+		 {
+			 mesas.InsDespues(pointer,m);
+			 pointer= mesas.ObtProx(pointer);
+		 }
+		 else
+		 {
+			 mesas.InsComienzo(m);
+		 	 pointer= mesas.ObtPrimero();
+		 }
+
+	}
 }
 
 void Centro::llenarVotacionManual()
@@ -26,9 +92,12 @@ void Centro::llenarVotacionManual()
 
 	do
 	{
-		vg.Limpiar();
+		//vg.Limpiar();
 
+		//================================================================================
 		//datos del estudiante que va a votar
+		//================================================================================
+
 		vg.ImprimirMensaje("========== DATOS DEL ESTUDIANTE ==========");
 		string ced= vg.LeerString("Cedula: ");
 		string nom= vg.LeerString("Nombre: ");
@@ -43,6 +112,10 @@ void Centro::llenarVotacionManual()
 		e.setDecanato(dec);
 		e.setSemestre(s);
 
+		//================================================================================
+		// llenado de la papeleta de votos
+		//================================================================================
+
 		vg.ImprimirMensaje("===== CARGOS A VOTAR =======");
 		string cargo,est;
 		int vop;
@@ -52,13 +125,17 @@ void Centro::llenarVotacionManual()
 					vg.ImprimirMensaje("\n Piense Sabiamente su Elección");
 					vg.ImprimirMensaje("\n");
 
-					//votar por el vocero
+				//================================================================================
+				//votar por el cargo de vocero
+				//================================================================================
+
 					vop=vg.LeerValidarNro("\n Desea votar por el cargo de vocero? \n Presione 1 para SI, 2 para no: ",1,2);
 					if(vop==1)
 						{
 							vg.ImprimirMensaje("============== Candidatos para Vocero ============= ");
 							vg.ImprimirMensaje("Maria Lopez");
 							vg.ImprimirMensaje("Jose Perez");
+							vg.ImprimirMensaje("\n ==================================== \n");
 
 							cargo="vocero";
 							est="voto por el cargo";
@@ -74,14 +151,17 @@ void Centro::llenarVotacionManual()
 							c.setEstado(est);
 							p.agregarVoto(c);
 						}
+			//================================================================================
+			//Votar por el secretario
+			//================================================================================
 
-				//Votar por el secretario
 				vop=vg.LeerValidarNro("\n Desea votar por el cargo de Secretario? \n Presione 1 para SI, 2 para no: ",1,2);
 						if(vop==1)
 							{
 								vg.ImprimirMensaje("========== Candidatos para Secretario ============ \n ");
 								vg.ImprimirMensaje("Juan Orozco");
 								vg.ImprimirMensaje("Pedro Alvarez");
+								vg.ImprimirMensaje("\n ==================================== \n");
 
 								cargo="secretario";
 								est="voto por el cargo";
@@ -98,13 +178,17 @@ void Centro::llenarVotacionManual()
 								p.agregarVoto(c);
 							}
 
-				//Votar por el presidente
+			//================================================================================
+			//Votar por el presidente
+			//================================================================================
+
 				vop=vg.LeerValidarNro("\n Desea votar por el cargo de presidente? Presione 1 para SI, 2 para no: ",1,2);
 						if(vop==1)
 							{
 								vg.ImprimirMensaje("====== Candidatos para Presidente ======== \n ");
 								vg.ImprimirMensaje("Magdalena Mendoza");
 								vg.ImprimirMensaje("Jesus Juarez");
+								vg.ImprimirMensaje("\n ==================================== \n");
 
 								cargo="presidente";
 								est="voto por el cargo";
@@ -121,20 +205,27 @@ void Centro::llenarVotacionManual()
 								p.agregarVoto(c);
 							}
 
-							vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
+			vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
+			p.imprimirResultados();
+
+			//================================================================================
 			//Se carga la papeleta del estudiante con los datos correspondientes
+			//================================================================================
 			e.setPapeleta(p);
 
+			//================================================================================
 			//se selecciona la mesa donde se colocara al estudiante para procesar su eleccion
+			//================================================================================
+
 			string cat= e.getPrograma();
-	//otra manera de obtener la categoria NOTA:metodo menos eficiente, puede generar ambiguedad;
+			//otra manera de obtener la categoria NOTA:metodo menos eficiente, puede generar ambiguedad;
 			//string cat= vg.LeerString("\n Mesa donde va a votar: \n debe ingresar el nombre de la mesa correspondiente a su programa: \nInformatica \nAnalisis \nProduccion \nFisica \nMatematica \nTelematica ");
 			nodo<Mesa>* apun;
 			m= buscarMesa(cat,apun);
 			m.AgregarVotante(e);
 			mesas.AsigInfo(apun,m);
 			r2=vg.LeerValidarNro("\n Desea agregar otro votante? 1.Si 2.No: ",1,2);
-	}while(r2==1);
+	}while(r2!=2);
 
 }
 

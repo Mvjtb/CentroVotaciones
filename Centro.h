@@ -16,10 +16,19 @@ class Centro {
 private:
 	VGeneral vg;
 	Lista<Mesa> mesas;
+	nodo<Mesa>* pointer;
 	int acumVPM;
 	bool check;				//esta variable sera de utilidad cuando se carguen los datos de la BD
 public:
 	Centro();
+	nodo<Mesa>* obtPrimero();
+	void asigPrimero(nodo<Mesa>* ptr);
+	nodo<Mesa>* ObtProx(nodo<Mesa>* p);
+	bool insertarC(Mesa mesa);
+	bool insertarD(nodo<Mesa>* pt,Mesa &mesa);
+	bool removerC(Mesa &mesa);
+	bool removerD(nodo<Mesa>* pt, Mesa &mesa);
+	void cargarMesas();
 	void llenarVotacionManual();
 	Mesa buscarMesa(string cat,nodo<Mesa>*&ap);
 	void procesarMesa(string cat);
