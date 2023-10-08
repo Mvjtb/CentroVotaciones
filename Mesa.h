@@ -44,7 +44,7 @@ public:														//metodos de la clase
 	void AgregarVotante(MEstudiante e);				//emplea el metodo de la cola para ingresar un nodo de tipo estudiante a la cola
 	bool RetirarVotante(MEstudiante& e);			//emplea el metodo remover para extraer de la cola un nodo de tipo estudiante
 	bool Vacia();									//emplea metodo vacia de cola
-	nodo<MEstudiante>* obtPrimerVotante();			//emplea el metodo obtener primero de la cola
+	nodoCola<MEstudiante>* obtPrimerVotante();			//emplea el metodo obtener primero de la cola
 	void ImprimirCola();
 };
 

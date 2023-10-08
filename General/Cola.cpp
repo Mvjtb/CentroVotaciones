@@ -23,8 +23,8 @@ bool Cola<Tipo>::Vacia(){
 
 template <class Tipo>
 bool Cola<Tipo>::Llena(){			//metodo para verificar si la cola "esta llena" es decir, ya no puede almacenar mas elementos
-     nodo<Tipo> *p;					//puntero de tipo nodo
-     p=new nodo<Tipo>;				//se crea la variable apuntadora
+     nodoCola<Tipo> *p;					//puntero de tipo nodo
+     p=new nodoCola<Tipo>;				//se crea la variable apuntadora
      if (p==NULL)					//si p es igual a null quiere decir que ya no hay mas espacio disponible en memoria para crear nodos
         return true;				//retorna true ya que no se pueden insertar mas nodos a la cola
      else							//en caso de que quede espacio en memoria para seguir insertando nodos p sera diferente a null
@@ -36,10 +36,10 @@ bool Cola<Tipo>::Llena(){			//metodo para verificar si la cola "esta llena" es d
 
 template <class Tipo>
 bool Cola<Tipo>::Insertar(Tipo Valor){		//metodo que permite insertar elementos a la cola, recibe un parametro tipo para facilitar el manejo de datos
-     nodo<Tipo> *nuevo;						// puntero de tipo nodo
+     nodoCola<Tipo> *nuevo;						// puntero de tipo nodo
      if (!Llena())							//si la lista no "esta llena" puede insertar el nuevo nodo a la cola
      {
-        nuevo=new nodo<Tipo>;				//inicializa la variable apuntadora de tipo nodo que estara enlazada al nodo apuntado por final
+        nuevo=new nodoCola<Tipo>;				//inicializa la variable apuntadora de tipo nodo que estara enlazada al nodo apuntado por final
         nuevo->info=Valor;
         nuevo->prox=NULL;					//el nuevo nodo ahora pasa a ser el final (null es a donde apunta el ultimo elemento de la cola)
         if (Final==NULL)					//si el apuntador al ultimo elemento es igual a null, entonces el nodo es el primero en entrar a la cola
@@ -54,7 +54,7 @@ bool Cola<Tipo>::Insertar(Tipo Valor){		//metodo que permite insertar elementos 
 
 template <class Tipo>
 bool Cola<Tipo>::Remover(Tipo &Valor){		//metodo para remover un elemento de la cola (funciona similar al insertar)
-     nodo<Tipo> *primero;
+     nodoCola<Tipo> *primero;
      if (!Vacia())						//si la cola no esta vacia, es decir, tiene elementos procede a eliminar el primer nodo de la cola
      {
         primero=Frente;					//nodo primero es igual a frente (primer nodo de la cola)
@@ -115,7 +115,7 @@ void Cola<Tipo>::imprimirCola(Cola<Tipo>&cola1)
 
 //METODO PARA OBTENER EL PUNTERO FRENTE
 template <class Tipo>
-nodo<Tipo>* Cola<Tipo>::obtPrimero()			//metodo para obtener el primer elemento de la cola
+nodoCola<Tipo>* Cola<Tipo>::obtPrimero()			//metodo para obtener el primer elemento de la cola
 {
 	return Frente;							//frente apunta al primer elemento de la cola
 }

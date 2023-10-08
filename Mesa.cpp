@@ -71,7 +71,7 @@ bool Mesa::Vacia()
 	return estudiantes.Vacia();
 }
 
-nodo<MEstudiante>* Mesa::obtPrimerVotante()
+nodoCola<MEstudiante>* Mesa::obtPrimerVotante()
 {
 	return estudiantes.obtPrimero();
 }

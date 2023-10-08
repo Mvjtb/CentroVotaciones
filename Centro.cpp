@@ -7,8 +7,10 @@
 
 #include "Centro.h"
 
-Centro::Centro() {
-	check=false;		//esta variable sera de utilidad cuando se carguen los datos de la BD
+
+Centro::Centro(){
+	check=false;//esta variable sera de utilidad cuando se carguen los datos de la BD
+	acumVPM=0;
 }
 
 void Centro::llenarVotacionManual()
@@ -136,16 +138,17 @@ void Centro::llenarVotacionManual()
 
 }
 
-Mesa Centro::buscarMesa(string cat,nodo<Mesa>*&ap)
+Mesa Centro::buscarMesa(string cat,nodo<Mesa>* &ap)
 {
 	Mesa m;								//se declara un objeto mesa
-	ap= mesas.ObtPrimero();				//declaramos un ap con el primer elemento de la lista mesas
+	ap= mesas.ObtPrimero();			//declaramos un ap con el primer elemento de la lista mesas
 	for(int i=0; i<6; i++)				//ciclo iterativo que se ejecuta segun la cantidad de mesas, para este caso 6 mesas
 	{
 		m= mesas.ObtInfo(ap);			//la mesa se va a traer de la lista de mesas la informacion contenida en el nodo al que apunta el apuntador
+
 		if(cat!=m.getCategoria())		//si la categoria es distinta a la categoria de la mesa posicionada en el primer nodo pasa al siguiente nodo
 		{
-			ap= mesas.ObtProx(ap);		//ahora el apuntador tiene la posicion del siguiente nodo de la lista, para proseguir con la busqueda hasta allar la mesa
+			ap= mesas.ObtProx(ap);		//ahora el apuntador tiene la posicion del siguiente nodo de la lista, para proseguir con la busqueda hasta encontrar la mesa
 		}
 	}
 	return m;
