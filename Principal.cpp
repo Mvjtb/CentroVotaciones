@@ -45,21 +45,24 @@ int main() {
 		{
 			vg.Limpiar();
 			vg.ImprimirMensaje("\n SISTEMA DE VOTACIONES \n");
-			vg.ImprimirMensaje("1. Gestionar la votacion");
-			vg.ImprimirMensaje("2. Procesar Votaciones");
-			vg.ImprimirMensaje("3. Consultar Mesa");
-			vg.ImprimirMensaje("4. Salir");
-			ov=vg.LeerValidarNro("Seleccione una opcion",1,4);
+			vg.ImprimirMensaje("1. Cargar Mesa");
+			vg.ImprimirMensaje("2. Gestionar la votacion");
+			vg.ImprimirMensaje("3. Procesar Votaciones");
+			vg.ImprimirMensaje("4. Consultar Mesa");
+			vg.ImprimirMensaje("5. Salir");
+			ov=vg.LeerValidarNro("Seleccione una opcion: ",1,5);
 				switch(ov)
 				{
-				case 1: cent.llenarVotacionManual();
+				case 1: cent.cargarMesas();
 				break;
-				case 2: cent.procesarMesa(cat);
+				case 2: cent.llenarVotacionManual();
 				break;
-				case 3: cent.reporteMesa(cat);
+				case 3: cent.procesarMesa(cat);
+				break;
+				case 4: cent.reporteMesa(cat);
 				break;
 				}
-		}while(ov !=4);
+		}while(ov !=5);
 		return 0;
 	}
 

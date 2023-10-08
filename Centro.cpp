@@ -75,10 +75,35 @@ void Centro::cargarMesas()
 			 mesas.InsComienzo(m);
 		 	 pointer= mesas.ObtPrimero();
 		 }
-
 	}
+
+	imprimirListaMesas();
 }
 
+void Centro::imprimirListaMesas()
+{
+	Lista<Mesa> aux;
+	nodo<Mesa>* apunt;
+	Mesa valor;
+
+	apunt= mesas.ObtPrimero();
+
+	vg.ImprimirMensaje("=======================================");
+	vg.ImprimirMensaje("========== LISTADO DE MESAS ===========");
+	vg.ImprimirMensaje("=======================================");
+	while(!mesas.Vacia())
+	{
+		mesas.EliComienzo(valor);
+		cout<<"Nombre Mesa: "<<valor.getCategoria()<<"Numero de Mesa: "<<valor.getNumMesa()<<endl;
+		cout<<"*********************************"<<endl;
+		aux.InsComienzo(valor);
+	}
+	while(!aux.Vacia())
+	{
+		aux.EliComienzo(valor);
+		mesas.InsComienzo(valor);
+	}
+}
 void Centro::llenarVotacionManual()
 {
 	vg.ImprimirMensaje("========== LLENAR PAPELETA ============");
@@ -206,13 +231,13 @@ void Centro::llenarVotacionManual()
 							}
 
 			vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
-			p.imprimirResultados();
+			//p.imprimirResultados();
 
 			//================================================================================
 			//Se carga la papeleta del estudiante con los datos correspondientes
 			//================================================================================
 			e.setPapeleta(p);
-
+			//p.imprimirResultados();
 			//================================================================================
 			//se selecciona la mesa donde se colocara al estudiante para procesar su eleccion
 			//================================================================================

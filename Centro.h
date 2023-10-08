@@ -29,6 +29,7 @@ public:
 	bool removerC(Mesa &mesa);
 	bool removerD(nodo<Mesa>* pt, Mesa &mesa);
 	void cargarMesas();
+	void imprimirListaMesas();
 	void llenarVotacionManual();
 	Mesa buscarMesa(string cat,nodo<Mesa>*&ap);
 	void procesarMesa(string cat);
