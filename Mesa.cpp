@@ -9,7 +9,8 @@
 
 Mesa::Mesa() {
 	numMesa=0;
-	cantVotos=0;
+	cantV=0;
+	cantE=0;
 	contP=0;
 	contS=0;
 	contV1=0;
@@ -36,17 +37,25 @@ int Mesa::getNumMesa()
 	return numMesa;
 }
 
-void Mesa::setCantVotos(int v)
+void Mesa::setCantV()
 {
-	cantVotos=v;
+	cantV++;
 }
 
-int Mesa::getCantVotos()
+int Mesa::getCantV()
 {
-	return cantVotos;
+	return cantV;
 }
 
+void Mesa::setCantE()
+{
+	cantE++;
+}
 
+int Mesa::getCantE()
+{
+	return cantE;
+}
 void Mesa::AgregarVotante(MEstudiante e)
 {
   estudiantes.Insertar(e);

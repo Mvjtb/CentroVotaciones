@@ -54,7 +54,7 @@ int MEstudiante::getSemestre(){
 	return semestre;
 }
 
-/*
+
 void MEstudiante::setPapeleta(Papeleta p)
 {
 	pap=p;
@@ -65,4 +65,3 @@ Papeleta MEstudiante::getPapeleta()
 	return pap;
 }
 
-*/

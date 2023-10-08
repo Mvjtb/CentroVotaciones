@@ -11,6 +11,7 @@
 #include "Papeleta.h"
 #include "General/VGeneral.h"
 #include "ListaEstudiantes.h"
+#include "Centro.h"
 
 using namespace std;
 
@@ -23,11 +24,7 @@ int main() {
 	ListaEstudiantes listv;
 	MEstudiante mest;
 	VGeneral vg;
-	Papeleta pap, auxpila;
-	Cargo car;
-	//datos del cargo
-	string c, p;
-	int r,vo;
+	Centro cent;
 	//datos para lista estudiantes
 	string ced, nomb, ape, progra, deca;
 	int stre, resp, opc;
@@ -37,104 +34,33 @@ int main() {
 
 	resp =
 			vg.LeerValidarNro(
-					"\nIndique el menu al que desea acceder: 1)Gestion Candidatos  2)Lista Estudiantes: ",
+					"\nIndique el menu al que desea acceder: 1)Gestion de Votos  2)Lista Estudiantes: ",
 					1, 2);
 
 	if (resp == 1) {
 
-		vg.ImprimirMensaje("\n");
-		vg.ImprimirEncabezado("============================","====== MENU DE VOTACIONES ========");
-		vg.ImprimirMensaje("1.Seleccionar Candidatos");
-		vg.ImprimirMensaje("2. Volver al Menu");
-
-		opc=vg.LeerValidarNro("\n Elija su opcion: ",1,2);
-
-		if(opc==1)
+		int ov;
+		string cat;
+		do
 		{
-				vg.ImprimirMensaje("==== SELECCIONE A SUS CANDIDATOS ======");
-				vg.ImprimirMensaje("\n TIENE A SU DISPOSICION 3 CARGOS POR LOS CUALES PUEDE VOTAR: VOCERO, SECRETARIO Y PRESIDENTE");
-				vg.ImprimirMensaje("\n Elija Sabiamente");
-
-				vo=vg.LeerValidarNro("Desea votar por el cargo de vocero? \n Presione 1 para SI, 2 para no: ",1,2);
-				if(vo==1)
+			vg.Limpiar();
+			vg.ImprimirMensaje("\n SISTEMA DE VOTACIONES \n");
+			vg.ImprimirMensaje("1. Gestionar la votacion");
+			vg.ImprimirMensaje("2. Procesar Votaciones");
+			vg.ImprimirMensaje("3. Consultar Mesa");
+			vg.ImprimirMensaje("4. Salir");
+			ov=vg.LeerValidarNro("Seleccione una opcion",1,4);
+				switch(ov)
 				{
-					vg.ImprimirMensaje("============== Candidatos para Vocero ============= ");
-					vg.ImprimirMensaje("Maria Lopez");
-					vg.ImprimirMensaje("Jose Perez");
-
-					c="vocero";
-					p="voto por el cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
+				case 1: cent.llenarVotacionManual();
+				break;
+				case 2: cent.procesarMesa(cat);
+				break;
+				case 3: cent.reporteMesa(cat);
+				break;
 				}
-				else
-				{
-					c="vocero";
-					p="no voto por este cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
-				}
-
-				//Votar por el secretario
-				vo=vg.LeerValidarNro("\n Desea votar por el cargo de Secretario? \n Presione 1 para SI, 2 para no: ",1,2);
-				if(vo==1)
-				{
-					vg.ImprimirMensaje("========== Candidatos para Secretario ============ \n ");
-					vg.ImprimirMensaje("Juan Orozco");
-					vg.ImprimirMensaje("Pedro Alvarez");
-
-					c="secretario";
-					p="voto por el cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
-				}
-				else
-				{
-					c="secretario";
-					p="no voto por este cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
-				}
-
-				//Votar por el presidente
-				vo=vg.LeerValidarNro("Desea votar por el cargo de presidente? Presione 1 para SI, 2 para no: ",1,2);
-				if(vo==1)
-				{
-					vg.ImprimirMensaje("====== Candidatos para Presidente ======== \n ");
-					vg.ImprimirMensaje("Magdalena Mendoza");
-					vg.ImprimirMensaje("Jesus Juarez");
-
-					c="presidente";
-					p="voto por el cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
-				}
-				else
-				{
-					c="presidente";
-					p="no voto por este cargo";
-					car.setCargo(c);
-					car.setEstado(p);
-					pap.agregarVoto(car);
-				}
-
-				vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
-
-				//	se imprime la papeleta con los cargos seleccionados por el votante
-				if(!pap.vacia()) {
-					pap.imprimirResultados();
-				}
-		}
-
-
-		/*
-		 *  MENU PARA GESTION LISTA ESTUDIANTES VERSION DE PRUEBA.
-		 */
+		}while(ov !=4);
+		return 0;
 	}
 
 	else {

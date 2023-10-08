@@ -12,7 +12,6 @@
 #include "General/Cola.cpp"
 
 #include "MEstudiante.h"
-//#include "ListaEstudiantes.h"
 using namespace std;
 
 /*
@@ -21,9 +20,8 @@ using namespace std;
 class Mesa {
 private:													//atributos de la clase
 	string categoria;										//criterio categoria de la mesa
-	int numMesa,cantVotos,contP,contS,contV1,contV2;		//contadores para poder totalizar luego la cantidad de votos por mesa y por cargos
+	int numMesa,cantE,cantV,contP,contS,contV1,contV2;		//contadores para poder totalizar luego la cantidad de votos por mesa y por cargos
 	Cola<MEstudiante> estudiantes;							//cola de estudiantes
-	//ListaEstudiantes le;
 
 public:														//metodos de la clase
 	Mesa();
@@ -31,8 +29,10 @@ public:														//metodos de la clase
 	string getCategoria();
 	void setNumMesa(int nm);
 	int getNumMesa();
-	void setCantVotos(int v);
-	int getCantVotos();
+	void setCantE();
+	int getCantE();
+	void setCantV();
+	int getCantV();
 	void setContP(int cp);
 	int getContP();
 	void setContS(int cs);
