@@ -16,7 +16,7 @@ class Centro {
 private:
 	VGeneral vg;
 	Lista<Mesa> mesas;
-	nodo<Mesa>* pointer;
+	//nodo<Mesa>* pointer;
 	int acumVPM;
 	bool check;				//esta variable sera de utilidad cuando se carguen los datos de la BD
 public:

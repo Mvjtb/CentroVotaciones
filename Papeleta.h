@@ -28,6 +28,7 @@ public:
 	int cantVotos();					//para saber cuantos votos a cargos hay por papeleta (se puede votar por todos los cargos o solo por alguno(s))
 	Cargo obtenerInfo(Nodopila<Cargo>* apunt);
 	void imprimirResultados();			//imprime la informacion contenida en la papeleta (NOTA:METODO DEFECTUOSO ACTUALMENTE)
+	bool vaciarPilaVotos();				//metodo para vaciar la pila base, pasa la informacion a una pila auxiliar
 };
 
 #endif /* PAPELETA_H_ */

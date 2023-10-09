@@ -55,14 +55,16 @@ void Papeleta::imprimirResultados()
 {
 	Pila<Cargo> aux;
 	Cargo info;
+	cout<< " ===================== " <<endl;
 	cout<< " ==== SU ELECCION ==== "<<endl;
 	cout<< " ===================== " <<endl;
 	while(!cargos.Vacia())
 	{
-		cargos.Remover(info);
-		cout<<"Cargo: "<<info.getCargo()<<endl<<"Estatus: "<<info.getEstado()<<endl;
-		cout<<"================="<<endl;
-		aux.Insertar(info);
+			cargos.Remover(info);
+			cout<<"***************************************"<<endl;
+			cout<<"\nCargo: "<<info.getCargo()<<endl<<"\n Estatus: "<<info.getEstado()<<endl;
+			cout<<"***************************************"<<endl;
+			aux.Insertar(info);
 	};
 	while(!aux.Vacia())
 	{
@@ -72,3 +74,16 @@ void Papeleta::imprimirResultados()
 
 }
 
+bool Papeleta::vaciarPilaVotos()
+{
+	Pila<Cargo> auxiliar;
+	Cargo info;
+
+	cout<<" ===== VACIANDO LA PILA ====="<<endl;
+
+	while(!cargos.Vacia())
+	{
+		cargos.Remover(info);
+		auxiliar.Insertar(info);
+	}
+}

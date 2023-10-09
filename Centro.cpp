@@ -46,6 +46,11 @@ bool Centro::removerD(nodo<Mesa>* pt, Mesa &mesa)
 	mesas.EliDespues(pt, mesa);
 }
 
+/*================================================================================
+ *  						CARGADO DE LAS MESAS
+ *================================================================================
+ *
+*/
 
 void Centro::cargarMesas()
 {
@@ -59,7 +64,7 @@ void Centro::cargarMesas()
 	int numM;
 	nodo<Mesa>* pointer;
 
-	for (int i=0; i<6 ; i++)
+	for (int i=1; i<7 ; i++)
 	{
 		 catm= vg.LeerString("\n CATEGORIA DE LA MESA: ");		//NOTA: LA CATEGORIA HACE REFERENCIA A ALGUN PROGRAMA ACADEMICO (CARRERA)
 		 numM= i;
@@ -77,9 +82,16 @@ void Centro::cargarMesas()
 		 }
 	}
 
+	cout<<" ====== MESAS CARGADAS ======"<<endl;
+	check=true;
 	imprimirListaMesas();
+	vg.Pausa();
 }
 
+/*================================================================================
+ * 					IMPRIMIR LISTA DE MESAS
+ *================================================================================
+*/
 void Centro::imprimirListaMesas()
 {
 	Lista<Mesa> aux;
@@ -88,13 +100,14 @@ void Centro::imprimirListaMesas()
 
 	apunt= mesas.ObtPrimero();
 
+	cout<<endl;
 	vg.ImprimirMensaje("=======================================");
 	vg.ImprimirMensaje("========== LISTADO DE MESAS ===========");
 	vg.ImprimirMensaje("=======================================");
 	while(!mesas.Vacia())
 	{
 		mesas.EliComienzo(valor);
-		cout<<"Nombre Mesa: "<<valor.getCategoria()<<"Numero de Mesa: "<<valor.getNumMesa()<<endl;
+		cout<<"Nombre Mesa: "<<valor.getCategoria()<<"\nNumero de Mesa: "<<valor.getNumMesa()<<endl;
 		cout<<"*********************************"<<endl;
 		aux.InsComienzo(valor);
 	}
@@ -104,21 +117,26 @@ void Centro::imprimirListaMesas()
 		mesas.InsComienzo(valor);
 	}
 }
+
+/*================================================================================
+ * 					LLENAR LA VOTACION DE FORMA MANUAL
+ *================================================================================
+ *
+*/
 void Centro::llenarVotacionManual()
 {
 	vg.ImprimirMensaje("========== LLENAR PAPELETA ============");
 
 	string categoria;
 	Mesa m;
-	Papeleta p;
+	Papeleta p,pape;
 	MEstudiante e;
 	Cargo c;
 	int r2;
 
 	do
 	{
-		//vg.Limpiar();
-
+		vg.Limpiar();
 		//================================================================================
 		//datos del estudiante que va a votar
 		//================================================================================
@@ -140,29 +158,28 @@ void Centro::llenarVotacionManual()
 		//================================================================================
 		// llenado de la papeleta de votos
 		//================================================================================
-
+		//pape = new Papeleta;
 		vg.ImprimirMensaje("===== CARGOS A VOTAR =======");
 		string cargo,est;
 		int vop;
 
 					vg.ImprimirMensaje("==== SELECCIONE A SUS CANDIDATOS ======");
-					vg.ImprimirMensaje("\n TIENE A SU DISPOSICION 3 CARGOS POR LOS CUALES PUEDE VOTAR: VOCERO, SECRETARIO Y PRESIDENTE");
-					vg.ImprimirMensaje("\n Piense Sabiamente su Elección");
+					vg.ImprimirMensaje("\n TIENE A SU DISPOSICION 4 CARGOS POR LOS CUALES PUEDE VOTAR: VOCERO 2, VOCERO 1, SECRETARIO Y PRESIDENTE");
+					vg.ImprimirMensaje("\n ELIJE SABIAMENTE");
 					vg.ImprimirMensaje("\n");
 
 				//================================================================================
-				//votar por el cargo de vocero
+				//votar por el cargo de vocero 2
 				//================================================================================
-
-					vop=vg.LeerValidarNro("\n Desea votar por el cargo de vocero? \n Presione 1 para SI, 2 para no: ",1,2);
+					vop=vg.LeerValidarNro("\n Desea votar por el cargo de vocero 2? \n Presione 1 para SI, 2 para no: ",1,2);
 					if(vop==1)
 						{
 							vg.ImprimirMensaje("============== Candidatos para Vocero ============= ");
-							vg.ImprimirMensaje("Maria Lopez");
-							vg.ImprimirMensaje("Jose Perez");
+							vg.ImprimirMensaje("Judith Jurado");
+							vg.ImprimirMensaje("Paola Garcia ");
 							vg.ImprimirMensaje("\n ==================================== \n");
 
-							cargo="vocero";
+							cargo="vocero 2";
 							est="voto por el cargo";
 							c.setCargo(cargo);
 							c.setEstado(est);
@@ -170,7 +187,33 @@ void Centro::llenarVotacionManual()
 						}
 					else
 						{
-							cargo="vocero";
+							cargo="vocero 2";
+							est="no voto por este cargo";
+							c.setCargo(cargo);
+							c.setEstado(est);
+							p.agregarVoto(c);
+						}
+				//================================================================================
+				//votar por el cargo de vocero 1
+				//================================================================================
+
+					vop=vg.LeerValidarNro("\n Desea votar por el cargo de vocero 1? \n Presione 1 para SI, 2 para no: ",1,2);
+					if(vop==1)
+						{
+							vg.ImprimirMensaje("============== Candidatos para Vocero ============= ");
+							vg.ImprimirMensaje("Maria Lopez");
+							vg.ImprimirMensaje("Jose Perez");
+							vg.ImprimirMensaje("\n ==================================== \n");
+
+							cargo="vocero 1";
+							est="voto por el cargo";
+							c.setCargo(cargo);
+							c.setEstado(est);
+							p.agregarVoto(c);
+						}
+					else
+						{
+							cargo="vocero 1";
 							est="no voto por este cargo";
 							c.setCargo(cargo);
 							c.setEstado(est);
@@ -231,33 +274,42 @@ void Centro::llenarVotacionManual()
 							}
 
 			vg.ImprimirMensaje("=====GRACIAS POR PARTICIPAR======");
-			//p.imprimirResultados();
+			p.imprimirResultados();
 
 			//================================================================================
 			//Se carga la papeleta del estudiante con los datos correspondientes
 			//================================================================================
 			e.setPapeleta(p);
-			//p.imprimirResultados();
+
+			//===================================================================================================
+			//Se vacia la papeleta del estudiante con los datos correspondientes y se cargan a una pila auxiliar
+			//===================================================================================================
+			p.vaciarPilaVotos();
+
 			//================================================================================
 			//se selecciona la mesa donde se colocara al estudiante para procesar su eleccion
 			//================================================================================
-
-			string cat= e.getPrograma();
+			//string cat= e.getPrograma();
 			//otra manera de obtener la categoria NOTA:metodo menos eficiente, puede generar ambiguedad;
-			//string cat= vg.LeerString("\n Mesa donde va a votar: \n debe ingresar el nombre de la mesa correspondiente a su programa: \nInformatica \nAnalisis \nProduccion \nFisica \nMatematica \nTelematica ");
+			string cat= vg.LeerString("\n Mesa donde va a votar: \n debe ingresar el nombre de la mesa correspondiente a su programa: \nInformatica \nAnalisis \nProduccion \nFisica \nMatematica \nTelematica ");
 			nodo<Mesa>* apun;
 			m= buscarMesa(cat,apun);
 			m.AgregarVotante(e);
 			mesas.AsigInfo(apun,m);
-			r2=vg.LeerValidarNro("\n Desea agregar otro votante? 1.Si 2.No: ",1,2);
+			r2=vg.LeerValidarNro("\n Desea llenar la votacion de otro estudiante (votante)? 1.Si 2.No: ",1,2);
 	}while(r2!=2);
 
 }
 
+/*================================================================================
+ * 				METODO DE BUSQUEDA DE MESA
+ *================================================================================
+ *
+*/
 Mesa Centro::buscarMesa(string cat,nodo<Mesa>* &ap)
 {
 	Mesa m;								//se declara un objeto mesa
-	ap= mesas.ObtPrimero();			//declaramos un ap con el primer elemento de la lista mesas
+	ap= mesas.ObtPrimero();				//declaramos un ap con el primer elemento de la lista mesas
 	for(int i=0; i<6; i++)				//ciclo iterativo que se ejecuta segun la cantidad de mesas, para este caso 6 mesas
 	{
 		m= mesas.ObtInfo(ap);			//la mesa se va a traer de la lista de mesas la informacion contenida en el nodo al que apunta el apuntador
@@ -270,6 +322,11 @@ Mesa Centro::buscarMesa(string cat,nodo<Mesa>* &ap)
 	return m;
 }
 
+/*================================================================================
+ * 						METODO PARA PROCESAR LAS MESAS
+ *================================================================================
+ *
+*/
 void Centro::procesarMesa(string cat)
 {
 	if(check==false)
@@ -314,6 +371,12 @@ void Centro::procesarMesa(string cat)
 	mesas.AsigInfo(ap,m);
 
 }
+
+/*================================================================================
+ * 					METODO REPORTE DE MESAS
+ *================================================================================
+ *
+*/
 
 void Centro::reporteMesa(string cat)
 {
